@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Embedded Messaging Test</title>
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+            margin: 0;
+            padding: 40px;
+            background: #f4f6f9;
+            color: #16325c;
+        }
+        .container {
+            max-width: 640px;
+            margin: 0 auto;
+            background: #fff;
+            border-radius: 8px;
+            padding: 32px;
+            box-shadow: 0 1px 4px rgba(0,0,0,0.08);
+        }
+        h1 {
+            font-size: 20px;
+            margin-top: 0;
+        }
+        p {
+            line-height: 1.5;
+            color: #3e3e3c;
+        }
+        code {
+            background: #f0f0f0;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 13px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Embedded Messaging — Standalone Test Page</h1>
+        <p>This is a plain HTML page (no Visualforce) used to test whether the Salesforce Embedded Messaging chat widget loads and connects correctly outside the Salesforce domain/CSP context.</p>
+        <p>If the widget appears in the bottom corner but still won't connect from Singapore, open the browser console (F12) and check the Network/Console tabs for errors — that will confirm whether it's a network/firewall block vs. a Salesforce-side config issue.</p>
+    </div>
+
+    <!-- Salesforce Embedded Messaging -->
+    <!-- NOTE: replace orgId / deployment name / site URL below with Kumpulan's actual
+         Embedded Messaging deployment details before going live. Values below are
+         placeholders carried over from the template. -->
+    <script type='text/javascript'>
+        function initEmbeddedMessaging() {
+            try {
+                embeddedservice_bootstrap.settings.language = 'en_US'; // For example, enter 'en' or 'en-US'
+                embeddedservice_bootstrap.init(
+                    '00DgL00000QmnCL',
+                    'SDO_Messaging_for_Web',
+                    'https://de1777261529355.my.site.com/ESWSDOMessagingforWeb1777267341190',
+                    {
+                        scrt2URL: 'https://de1777261529355.my.salesforce-scrt.com'
+                    }
+                );
+            } catch (err) {
+                console.error('Error loading Embedded Messaging: ', err);
+            }
+        };
+    </script>
+    <script type='text/javascript' src='https://de1777261529355.my.site.com/ESWSDOMessagingforWeb1777267341190/assets/js/bootstrap.min.js' onload='initEmbeddedMessaging()'></script>
+</body>
+</html>
